@@ -49,3 +49,9 @@
   background-color: rgb(79, 5, 199);
   transition-duration: 300ms;
 }
+
+@media only screen and (max-width: 500px) {
+  .main h2 {
+    font-size: 36px;
+  }
+}

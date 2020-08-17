@@ -9,9 +9,16 @@
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: rgb(79, 5, 199);
   position: sticky;
   top: 0;
+}
+
+.nav p {
+  font-weight: 300;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .nav h4 {
@@ -21,14 +28,38 @@
 
 .list {
   width: 700px;
-  margin: 60px auto;
+  margin: 80px auto;
   display: flex;
   flex-direction: column;
+}
+
+.list > div {
+  margin: 50px 0;
+}
+
+.list > div:first-of-type {
+  margin: 10px 0;
 }
 
 .list h2 {
   font-weight: 400;
   font-size: 36px;
+  margin: 0;
+}
+
+.list h1 {
+  font-weight: 300;
+}
+
+.list i {
+  color: rgb(137, 120, 163);
+  font-weight: 400;
+  font-size: 12px;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: rgb(228, 228, 228);
+  border-radius: 12px;
+  margin: 20px 0;
 }
 
 /* LIST ITEM */
@@ -36,12 +67,19 @@
 .item {
   display: flex;
   width: 100%;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.308);
+  background-color: rgba(255, 255, 255, 0.534);
   margin: 30px 0px;
   padding: 10px 15px;
+  transition-duration: 200ms;
+}
+
+.item:hover {
+  transform: scale(1.1);
+  transition-duration: 200ms;
 }
 
 .item > div:first-of-type h5 {
@@ -63,4 +101,142 @@
 
 .isCompleted img {
   width: 20px;
+}
+
+/* ADD BUTTON */
+
+.add {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  margin: 50px 70px;
+}
+
+.add img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition-duration: 100ms;
+}
+
+.add img:hover {
+  transform: scale(1.2);
+  transition-duration: 150ms;
+}
+
+/* ADD SCREEN */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+}
+
+.addScreen {
+  height: 410px;
+  width: 600px;
+  background-color: white;
+  position: fixed;
+  left: 50%;
+  margin-left: -300px;
+  top: 50%;
+  margin-top: -200px;
+  z-index: 11;
+  border-radius: 16px;
+  box-shadow: 0px 0px 30px #3333331e;
+  animation: fadeIn 300ms ease-in-out;
+}
+
+.addScreen input {
+  border: none;
+  border-bottom: 1px rgb(79, 5, 199) solid;
+  height: 40px;
+  margin: 10px 0;
+  outline: none;
+  font-size: 22px;
+}
+.addScreen > div > p {
+  color: gray;
+}
+
+.addScreen > input:first-of-type {
+  border: none;
+  height: 120px;
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color: white;
+  font-size: 40px;
+  padding: 0 20px;
+  font-weight: 500;
+  width: 100%;
+  position: relative;
+  top: 0;
+  background-color: #ff4162;
+  margin: 0;
+}
+
+.addScreen > input:first-of-type::placeholder {
+  color: rgba(255, 255, 255, 0.466);
+}
+
+.addScreen input::placeholder {
+  color: #3838381e;
+  font-weight: 200;
+}
+
+.addScreen > div {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 30px;
+}
+
+.addScreen > div p {
+  margin: 0;
+}
+
+.addScreen > div:last-of-type {
+  display: flex;
+  align-items: center;
+}
+
+.addScreen > div > button {
+  border: none;
+  transition-duration: 200ms;
+  background-color: #ff4161a1;
+  color: white;
+  border-radius: 13px;
+  font-size: 16px;
+  padding: 10px 25px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.addScreen > div > button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.5);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .list {
+    width: 80vw;
+  }
 }
