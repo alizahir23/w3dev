@@ -11,7 +11,6 @@ export const GoogleSignIn = async () => {
                 name: result.user.displayName,
                 email: result.user.email,
                 uid: result.user.uid,
-                tasks: []
             }, { merge: true });
             const resultData = {
                 name: result.user.displayName,

@@ -69,13 +69,15 @@ const todo = () => {
                     let TasksForPast = []
                     console.log(tasks)
                     tasks.map(item => {
-                        if (item.deadline == todayDate) {
+                        if (parseInt(item.deadline) == todayDate) {
                             TasksForToday.push(item)
-                        } else if (item.deadline < todayDate) {
+                        } else if (parseInt(item.deadline) > todayDate) {
                             TasksForPast.push(item)
-                        } else if (todayDate < item.deadline) {
+                        } else if (todayDate > parseInt(item.deadline)) {
                             TasksForLater.push(item)
                         }
+                        console.log(todayDate > parseInt(item.deadline))
+                        console.log(todayDate, parseInt(item.deadline))
                         setTodayList(TasksForToday)
                         setPastList(TasksForPast)
                         setRestList(TasksForLater)
@@ -85,7 +87,6 @@ const todo = () => {
 
                 }).then(() => {
                     setTaskArray(tasks)
-
                     setLoading(false)
                 })
         }
@@ -104,7 +105,11 @@ const todo = () => {
         db.collection('users').doc(user.uid).set({
             tasks: array
         }, { merge: true });
+        console.log(array, TaskArray)
         let tasks
+        setTodayList([])
+        setPastList([])
+        setRestList([])
         db.collection('users').doc(user.uid).get()
             .then((data) => {
 
@@ -114,13 +119,14 @@ const todo = () => {
                 let TasksForPast = []
                 console.log(tasks)
                 tasks.map(item => {
-                    if (item.deadline == todayDate) {
+                    if (parseInt(item.deadline) == todayDate) {
                         TasksForToday.push(item)
-                    } else if (item.deadline < todayDate) {
+                    } else if (parseInt(item.deadline) > todayDate) {
                         TasksForPast.push(item)
-                    } else if (todayDate < item.deadline) {
+                    } else if (todayDate > parseInt(item.deadline)) {
                         TasksForLater.push(item)
                     }
+
                     setTodayList(TasksForToday)
                     setPastList(TasksForPast)
                     setRestList(TasksForLater)
@@ -129,14 +135,12 @@ const todo = () => {
 
 
             }).then(() => {
-                setTaskArray(tasks)
-
-                setLoading(false)
+                setTaskDeadline("")
+                setTaskDuration("")
+                setTaskName("")
+                setOverlay(false)
             })
-        setTaskDeadline("")
-        setTaskDuration("")
-        setTaskName("")
-        setOverlay(false)
+
     }
 
     // INPUT ALTERATION
